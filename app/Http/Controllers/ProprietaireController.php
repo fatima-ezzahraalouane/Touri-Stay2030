@@ -37,10 +37,24 @@ class ProprietaireController extends Controller
             'equipements' => 'nullable|array',
             'disponible_du' => 'required|date',
             'disponible_au' => 'required|date|after:disponible_du',
-            'images' => 'required|image|mimes:jpeg,png,jpg|max:5120',
+            'images' => 'required|max:255',
         ]);
 
         //conversion des equipements en chaine json
         $equipements = $request->has('equipements') ? json_encode($request->equipements) : json_encode([]);
+
+        //creation d'annonce
+        $annonce = Annonce::create([
+            'user_id' => Auth::id(),
+            'titre' => $validated['titre'],
+            'description' => $validated['description'],
+            'pays' =>$validated['pays'],
+            'ville' => $validated['ville'],
+            'prix' => $validated['prix'],
+            'equipements' => $equipements,
+            'disponible_du' => $validated['disponible_du'],
+            'disponible_au' => $validated['disponible_au'],
+            'images' => $validated['images'],
+        ]);
     }
 }
