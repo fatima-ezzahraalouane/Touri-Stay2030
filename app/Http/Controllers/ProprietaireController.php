@@ -37,11 +37,12 @@ class ProprietaireController extends Controller
             'equipements' => 'nullable|array',
             'disponible_du' => 'required|date',
             'disponible_au' => 'required|date|after:disponible_du',
-            'images' => 'required|max:255',
+            'images' => 'required|url|max:255',
         ]);
 
         //conversion des equipements en chaine json
-        $equipements = $request->has('equipements') ? json_encode($request->equipements) : json_encode([]);
+        // $equipements = $request->has('equipements') ? json_encode($request->equipements) : json_encode([]);
+        $equipements = json_encode($validated['equipements'] ?? []);
 
         //creation d'annonce
         $annonce = Annonce::create([
