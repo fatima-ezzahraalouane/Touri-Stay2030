@@ -19,9 +19,25 @@ class ProprietaireController extends Controller
         return view('proprietaire.dashboard', compact('annonces'));
     }
 
-    //afficher formulaire de creer nouvel annonce
+    //afficher formulaire de creer nouvelle annonce
     public function create()
     {
         return view('annonces.create');
+    }
+
+    //enregistrer nouvelle annonce dans database
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'titre' => 'required|string|max:255',
+            'description' => 'required|string',
+            'pays' => 'required|string|max:255',
+            'ville' => 'required|string|max:255',
+            'prix' => 'required|numeric|min:0',
+            'equipements' => 'nullable|array',
+            'disponible_du' => 'required|date',
+            'disponible_au' => 'required|date|after:disponible_du',
+            'images' => 'required|image|mimes:jpeg,png,jpg|max:5120',
+        ]);
     }
 }
