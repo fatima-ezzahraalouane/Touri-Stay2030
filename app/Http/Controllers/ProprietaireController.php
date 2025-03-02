@@ -39,5 +39,8 @@ class ProprietaireController extends Controller
             'disponible_au' => 'required|date|after:disponible_du',
             'images' => 'required|image|mimes:jpeg,png,jpg|max:5120',
         ]);
+
+        //conversion des equipements en chaine json
+        $equipements = $request->has('equipements') ? json_encode($request->equipements) : json_encode([]);
     }
 }
