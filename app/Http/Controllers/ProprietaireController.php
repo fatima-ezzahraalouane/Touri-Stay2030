@@ -59,4 +59,15 @@ class ProprietaireController extends Controller
 
         return redirect()->route('proprietaire.dashboard')->with('success', 'Votre annonce a été publiée avec succès!');
     }
+
+    //aficher une annonce specifique
+    public function show(Annonce $annonce)
+    {
+        //verifier l'utilisateur est proprietaire de l'annonce
+        if ($annonce->user_id !== Auth::id()) {
+            abort(403, 'Vous n\étes pas autorisé à accéder à cette annonce.');
+        }
+
+        return view('annonces.show', compact('annonce'));
+    }
 }
