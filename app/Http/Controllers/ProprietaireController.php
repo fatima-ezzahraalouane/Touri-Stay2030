@@ -56,5 +56,7 @@ class ProprietaireController extends Controller
             'disponible_au' => $validated['disponible_au'],
             'images' => $validated['images'],
         ]);
+
+        return redirect()->route('proprietaire.dashboard')->with('success', 'Votre annonce a été publiée avec succès!');
     }
 }
