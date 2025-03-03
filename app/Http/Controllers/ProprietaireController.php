@@ -131,4 +131,16 @@ class ProprietaireController extends Controller
 
         return redirect()->route('proprietaire.dashboard')->with('success', 'Votre annonce a été mise à jour avec succès!');
     }
+
+    //supprimer l'annonce de database
+    public function destroy(Annonce $annonce)
+    {
+        if ($annonce->user_id !== Auth::id()) {
+            abort(403, 'Vous n\étes pas autorisé à supprimer cette annonce.');
+        }
+
+        $annonce->delete();
+
+        return redirect()->route('proprietaire.dashboard')->with('succes', 'L\'annonce a été suprimée avec succès!');
+    }
 }
