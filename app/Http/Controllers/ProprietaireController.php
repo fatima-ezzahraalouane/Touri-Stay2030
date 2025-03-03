@@ -37,7 +37,7 @@ class ProprietaireController extends Controller
             'equipements' => 'nullable|array',
             'disponible_du' => 'required|date',
             'disponible_au' => 'required|date|after:disponible_du',
-            'images' => 'required|url|mimes:jpeg,png,jpg|max:255',
+            'images' => 'required|url|max:255',
         ]);
 
         //conversion des equipements en chaine json
@@ -87,6 +87,9 @@ class ProprietaireController extends Controller
             abort(403, 'Vous n\étes pas autorisé à modifier cette annonce.');
         }
 
+        // décoder les équipements depuis le JSON
+    $equipements = json_decode($annonce->equipements) ?: [];
+
         return view('annonces.edit', compact('annonce'));
     }
 
@@ -108,7 +111,7 @@ class ProprietaireController extends Controller
             'equipements' => 'nullable|array',
             'disponible_du' => 'required|date',
             'disponible_au' => 'required|date|after:disponible_du',
-            'images' => 'required|url|mimes:jpeg,png,jpg|max:255',
+            'images' => 'required|url|max:255',
         ]);
 
         // Conversion des équipements en chaîne JSON
