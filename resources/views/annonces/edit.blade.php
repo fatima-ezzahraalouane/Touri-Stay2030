@@ -248,7 +248,7 @@
                                     <input type="checkbox"
                                         name="equipements[]"
                                         id="wifi"
-
+                                        value="Wifi" 
                                         class="h-4 w-4 text-[#862633] rounded border-gray-300 focus:ring-[#862633]">
                                     <label for="wifi" class="ml-2 text-sm text-gray-700">
                                         <i class="fas fa-wifi mr-2 text-[#862633]"></i>Wifi
@@ -260,7 +260,7 @@
                                     <input type="checkbox"
                                         name="equipements[]"
                                         id="climatisation"
-
+                                        value="Climatisation"
                                         class="h-4 w-4 text-[#862633] rounded border-gray-300 focus:ring-[#862633]">
                                     <label for="climatisation" class="ml-2 text-sm text-gray-700">
                                         <i class="fas fa-snowflake mr-2 text-[#862633]"></i>Climatisation
@@ -272,7 +272,7 @@
                                     <input type="checkbox"
                                         name="equipements[]"
                                         id="cuisine"
-
+                                        value="Cuisine"
                                         class="h-4 w-4 text-[#862633] rounded border-gray-300 focus:ring-[#862633]">
                                     <label for="cuisine" class="ml-2 text-sm text-gray-700">
                                         <i class="fas fa-utensils mr-2 text-[#862633]"></i>Cuisine
@@ -284,7 +284,7 @@
                                     <input type="checkbox"
                                         name="equipements[]"
                                         id="tv"
-
+                                        value="TV"
                                         class="h-4 w-4 text-[#862633] rounded border-gray-300 focus:ring-[#862633]">
                                     <label for="tv" class="ml-2 text-sm text-gray-700">
                                         <i class="fas fa-tv mr-2 text-[#862633]"></i>TV
@@ -296,7 +296,7 @@
                                     <input type="checkbox"
                                         name="equipements[]"
                                         id="parking"
-
+                                        value="Parking"
                                         class="h-4 w-4 text-[#862633] rounded border-gray-300 focus:ring-[#862633]">
                                     <label for="parking" class="ml-2 text-sm text-gray-700">
                                         <i class="fas fa-parking mr-2 text-[#862633]"></i>Parking
@@ -308,7 +308,7 @@
                                     <input type="checkbox"
                                         name="equipements[]"
                                         id="piscine"
-
+                                        value="Piscine"
                                         class="h-4 w-4 text-[#862633] rounded border-gray-300 focus:ring-[#862633]">
                                     <label for="piscine" class="ml-2 text-sm text-gray-700">
                                         <i class="fas fa-swimming-pool mr-2 text-[#862633]"></i>Piscine
@@ -326,7 +326,7 @@
 
                             <div class="space-y-4">
                                 <div>
-                                    <label for="image_url" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <label for="images" class="block text-sm font-medium text-gray-700 mb-2">
                                         URL de l'image*
                                     </label>
                                     <input type="url"
