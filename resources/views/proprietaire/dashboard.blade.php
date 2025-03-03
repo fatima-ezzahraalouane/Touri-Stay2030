@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WorldCup Stay 2030 - Tableau de Bord Propriétaire</title>
+    <title>TouriStay 2030 - Tableau de Bord Propriétaire</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
@@ -40,7 +40,7 @@
                     <a href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                         class="bg-[#009A44] hover:bg-[#007A34] text-white px-4 py-2 rounded-md font-medium transition duration-300">
-                        Déconnexion
+                        <i class="fas fa-sign-out-alt mr-2"></i>Déconnexion
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
@@ -213,66 +213,92 @@
 
             <!-- pagination -->
             <div class="mt-6 flex justify-between items-center">
-    <div class="text-gray-600">
-        Affichant {{ $annonces->firstItem() ?? 0 }} à {{ $annonces->lastItem() ?? 0 }} sur {{ $annonces->total() }} annonces
-    </div>
-    
-    @if ($annonces->hasPages())
-        <nav class="inline-flex rounded-md shadow-sm">
-            {{-- Previous Page Link --}}
-            @if ($annonces->onFirstPage())
-                <span class="py-2 px-4 bg-gray-100 border border-gray-300 text-sm font-medium rounded-l-md text-gray-400 cursor-not-allowed">
-                    Précédent
-                </span>
-            @else
-                <a href="{{ $annonces->previousPageUrl() }}" class="py-2 px-4 bg-white border border-gray-300 text-sm font-medium rounded-l-md text-gray-700 hover:bg-gray-50">
-                    Précédent
-                </a>
-            @endif
-            
-            {{-- Pagination Elements --}}
-            @foreach ($annonces->getUrlRange(1, $annonces->lastPage()) as $page => $url)
-                @if ($page == $annonces->currentPage())
+                <div class="text-gray-600">
+                    Affichant {{ $annonces->firstItem() ?? 0 }} à {{ $annonces->lastItem() ?? 0 }} sur {{ $annonces->total() }} annonces
+                </div>
+
+                @if ($annonces->hasPages())
+                <nav class="inline-flex rounded-md shadow-sm">
+                    {{-- Previous Page Link --}}
+                    @if ($annonces->onFirstPage())
+                    <span class="py-2 px-4 bg-gray-100 border border-gray-300 text-sm font-medium rounded-l-md text-gray-400 cursor-not-allowed">
+                        Précédent
+                    </span>
+                    @else
+                    <a href="{{ $annonces->previousPageUrl() }}" class="py-2 px-4 bg-white border border-gray-300 text-sm font-medium rounded-l-md text-gray-700 hover:bg-gray-50">
+                        Précédent
+                    </a>
+                    @endif
+
+                    {{-- Pagination Elements --}}
+                    @foreach ($annonces->getUrlRange(1, $annonces->lastPage()) as $page => $url)
+                    @if ($page == $annonces->currentPage())
                     <span class="py-2 px-4 bg-[#862633] border border-[#862633] text-sm font-medium text-black">
                         {{ $page }}
                     </span>
-                @else
+                    @else
                     <a href="{{ $url }}" class="py-2 px-4 bg-white border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-50">
                         {{ $page }}
                     </a>
+                    @endif
+                    @endforeach
+
+                    {{-- Next Page Link --}}
+                    @if ($annonces->hasMorePages())
+                    <a href="{{ $annonces->nextPageUrl() }}" class="py-2 px-4 bg-white border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 hover:bg-gray-50">
+                        Suivant
+                    </a>
+                    @else
+                    <span class="py-2 px-4 bg-gray-100 border border-gray-300 text-sm font-medium rounded-r-md text-gray-400 cursor-not-allowed">
+                        Suivant
+                    </span>
+                    @endif
+                </nav>
                 @endif
-            @endforeach
-            
-            {{-- Next Page Link --}}
-            @if ($annonces->hasMorePages())
-                <a href="{{ $annonces->nextPageUrl() }}" class="py-2 px-4 bg-white border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 hover:bg-gray-50">
-                    Suivant
-                </a>
-            @else
-                <span class="py-2 px-4 bg-gray-100 border border-gray-300 text-sm font-medium rounded-r-md text-gray-400 cursor-not-allowed">
-                    Suivant
-                </span>
-            @endif
-        </nav>
-    @endif
-</div>
+            </div>
         </div>
+    </div>
 
-        <!-- Footer avec nouvelles couleurs -->
-        <!-- <footer class="bg-[#862633] text-white mt-12 py-8 rounded-lg">
-            <div class="container mx-auto px-4">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div> -->
-
-
-        <!-- Footer -->
-        <footer class="worldcup-gradient bg-[#862633] text-white mt-12 py-8 rounded-lg">
-
-            <div class="text-center text-gray-300">
+    <!-- Footer -->
+    <footer class="worldcup-gradient bg-[#862633] text-white mt-12 py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">TouriStay 2030</h3>
+                    <p class="text-gray-300">Votre plateforme d'hébergement officielle pour la Coupe du Monde 2030.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Liens utiles</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition"><i class="fas fa-home mr-2"></i>Accueil</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition"><i class="fas fa-info-circle mr-2"></i>Comment ça marche</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition"><i class="fas fa-question-circle mr-2"></i>FAQ</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition"><i class="fas fa-envelope mr-2"></i>Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-[#009A44]"></i>
+                            <span>contact@touristay2030.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-2 text-[#009A44]"></i>
+                            <span>+212 5XX XXX XXX</span>
+                        </li>
+                        <!-- <li class="flex items-center">
+                            <i class="fas fa-clock mr-2 text-[#009A44]"></i>
+                            <span>2025-03-03 21:45:49</span>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-300">
                 <p>&copy; TouriStay 2030. Tous droits réservés.</p>
             </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
 
     <!-- Modal Ajouter une annonce -->
     <div id="annonceModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden overflow-y-auto">
