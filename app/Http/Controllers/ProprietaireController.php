@@ -13,9 +13,8 @@ class ProprietaireController extends Controller
     {
         $userId = Auth::id(); //pour recuperer id du propietaire
 
-        $annonces = Annonce::where('user_id', $userId)->orderBy('created_at', 'desc')->paginate(10);
-        
-        
+        $annonces = Annonce::where('user_id', $userId)->orderBy('created_at', 'asc')->paginate(4);
+
         return view('proprietaire.dashboard', compact('annonces'));
     }
 
@@ -50,7 +49,7 @@ class ProprietaireController extends Controller
             'user_id' => Auth::id(),
             'titre' => $validated['titre'],
             'description' => $validated['description'],
-            'pays' =>$validated['pays'],
+            'pays' => $validated['pays'],
             'ville' => $validated['ville'],
             'prix' => $validated['prix'],
             'equipements' => $equipements,
@@ -64,7 +63,7 @@ class ProprietaireController extends Controller
         // } else {
         //     dd("Erreur lors de l'ajout !");
         // }
-        
+
 
         return redirect()->route('proprietaire.dashboard')->with('success', 'Votre annonce a été publiée avec succès!');
     }
@@ -78,5 +77,16 @@ class ProprietaireController extends Controller
         }
 
         return view('annonces.show', compact('annonce'));
+    }
+
+    //affiche formulaire de modifier une annonce
+    public function edit(Annonce $annonce)
+    {
+        //verifier l'utilisateur est proprietaire de l'annonce
+        if ($annonce->user_id !== Auth::id()) {
+            abort(403, 'Vous n\étes pas autorisé à modifier cette annonce.');
+        }
+
+        return view('annonces.edit', compact('annonce'));
     }
 }
