@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('pays');
             $table->string('ville');
             $table->decimal('prix', 10, 2);
-            $table->string('equipements'); 
+            $table->text('equipements'); 
             $table->date('disponible_du');
             $table->date('disponible_au');
             $table->string('images');
