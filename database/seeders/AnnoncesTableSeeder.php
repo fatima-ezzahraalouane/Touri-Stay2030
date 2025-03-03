@@ -39,6 +39,7 @@ class AnnoncesTableSeeder extends Seeder
 
         // Liste des villes et pays correspondants
         $locations = [
+            // Maroc
             ['ville' => 'Casablanca', 'pays' => 'Maroc'],
             ['ville' => 'Rabat', 'pays' => 'Maroc'],
             ['ville' => 'Marrakech', 'pays' => 'Maroc'],
@@ -47,6 +48,19 @@ class AnnoncesTableSeeder extends Seeder
             ['ville' => 'Agadir', 'pays' => 'Maroc'],
             ['ville' => 'Meknes', 'pays' => 'Maroc'],
             ['ville' => 'Oujda', 'pays' => 'Maroc'],
+
+            // Espagne
+            ['ville' => 'Madrid', 'pays' => 'Espagne'],
+            ['ville' => 'Barcelone', 'pays' => 'Espagne'],
+            ['ville' => 'Valence', 'pays' => 'Espagne'],
+            ['ville' => 'Séville', 'pays' => 'Espagne'],
+            ['ville' => 'Bilbao', 'pays' => 'Espagne'],
+
+            // Portugal
+            ['ville' => 'Lisbonne', 'pays' => 'Portugal'],
+            ['ville' => 'Porto', 'pays' => 'Portugal'],
+            ['ville' => 'Braga', 'pays' => 'Portugal'],
+            ['ville' => 'Coimbra', 'pays' => 'Portugal'],
         ];
 
         // Options d'équipements
