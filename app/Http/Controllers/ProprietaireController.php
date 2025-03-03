@@ -28,6 +28,7 @@ class ProprietaireController extends Controller
     //enregistrer nouvelle annonce dans database
     public function store(Request $request)
     {
+        // dd("methode store() executee!");
         $validated = $request->validate([
             'titre' => 'required|string|max:255',
             'description' => 'required|string',
@@ -57,6 +58,13 @@ class ProprietaireController extends Controller
             'disponible_au' => $validated['disponible_au'],
             'images' => $validated['images'],
         ]);
+
+        // if ($annonce) {
+        //     dd("Annonce ajoutée avec succès !");
+        // } else {
+        //     dd("Erreur lors de l'ajout !");
+        // }
+        
 
         return redirect()->route('proprietaire.dashboard')->with('success', 'Votre annonce a été publiée avec succès!');
     }
