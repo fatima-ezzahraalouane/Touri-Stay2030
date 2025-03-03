@@ -245,11 +245,414 @@
     </div>
 
     <!-- Modal remains the same but with updated styling -->
-    <!-- ... Rest of the modal code ... -->
+    <!-- Modal Ajouter une annonce -->
+    <div id="annonceModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-xl max-w-5xl w-full max-h-screen overflow-y-auto">
+            <!-- En-tête du modal avec le thème Coupe du Monde -->
+            <div class="worldcup-gradient p-6 rounded-t-lg">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center">
+                        <i class="fas fa-futbol text-white text-2xl mr-3"></i>
+                        <h2 class="text-2xl font-bold text-white">Nouvel Hébergement pour le Mondial 2030</h2>
+                    </div>
+                    <button onclick="closeAnnonceModal()" class="text-white hover:text-gray-200 focus:outline-none">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <p class="text-white mt-2 opacity-90">Proposez votre hébergement aux supporters du monde entier</p>
+            </div>
+
+            <div class="p-8">
+                <form action="{{ route('annonces.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Colonne gauche -->
+                        <div class="space-y-6">
+                            <!-- Informations de base -->
+                            <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                                <h3 class="text-lg font-bold text-[#862633] mb-4 flex items-center">
+                                    <i class="fas fa-info-circle mr-2"></i>
+                                    Informations Principales
+                                </h3>
+
+                                <!-- Titre -->
+                                <div class="mb-4">
+                                    <label for="titre" class="block text-sm font-medium text-gray-700 mb-2">Titre de l'hébergement*</label>
+                                    <input type="text" name="titre" id="titre" required
+                                        class="w-full border border-gray-300 rounded-md px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#862633]"
+                                        placeholder="Ex: Appartement moderne à 5min du stade">
+                                </div>
+
+                                <!-- Description -->
+                                <div class="mb-4">
+                                    <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Description détaillée*</label>
+                                    <textarea name="description" id="description" rows="5" required
+                                        class="w-full border border-gray-300 rounded-md px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#862633]"
+                                        placeholder="Décrivez votre hébergement en détail..."></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Localisation -->
+                            <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                                <h3 class="text-lg font-bold text-[#862633] mb-4 flex items-center">
+                                    <i class="fas fa-map-marker-alt mr-2"></i>
+                                    Localisation
+                                </h3>
+
+                                <!-- Pays -->
+                                <div class="mb-4">
+                                    <label for="pays" class="block text-sm font-medium text-gray-700 mb-2">Pays hôte*</label>
+                                    <select name="pays" id="pays" required
+                                        class="w-full border border-gray-300 rounded-md px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#862633]">
+                                        <option value="">Sélectionnez un pays</option>
+                                        <option value="Maroc">Maroc</option>
+                                        <option value="Espagne">Espagne</option>
+                                        <option value="Portugal">Portugal</option>
+                                    </select>
+                                </div>
+
+                                <!-- Ville -->
+                                <div class="mb-4">
+                                    <label for="ville" class="block text-sm font-medium text-gray-700 mb-2">Ville*</label>
+                                    <select name="ville" id="ville" required
+                                        class="w-full border border-gray-300 rounded-md px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#862633]">
+                                        <option value="">Sélectionnez une ville</option>
+                                        <optgroup label="Maroc">
+                                            <option value="Casablanca">Casablanca</option>
+                                            <option value="Rabat">Rabat</option>
+                                            <option value="Tanger">Tanger</option>
+                                        </optgroup>
+                                        <optgroup label="Espagne">
+                                            <option value="Madrid">Madrid</option>
+                                            <option value="Barcelone">Barcelone</option>
+                                        </optgroup>
+                                        <optgroup label="Portugal">
+                                            <option value="Lisbonne">Lisbonne</option>
+                                            <option value="Porto">Porto</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- Photos -->
+                            <div class="mt-8 bg-gray-50 p-6 rounded-lg border border-gray-200">
+                                <h3 class="text-lg font-bold text-[#862633] mb-4 flex items-center">
+                                    <i class="fas fa-camera mr-2"></i>
+                                    Photos
+                                </h3>
+
+                                <!-- Image URL -->
+                                <div>
+                                    <label for="image_url" class="block text-sm font-medium text-gray-700 mb-2">URL de l'image*</label>
+                                    <input type="url"
+                                        name="image_url"
+                                        id="image_url"
+                                        required
+                                        class="w-full border border-gray-300 rounded-md px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#862633]"
+                                        placeholder="https://exemple.com/image.jpg">
+                                    <p class="mt-1 text-sm text-gray-500">Format accepté: jpg, jpeg, png</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Colonne droite -->
+                        <div class="space-y-6">
+                            <!-- Tarification -->
+                            <!-- Section Tarification et Disponibilité -->
+                            <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                                <h3 class="text-lg font-bold text-[#862633] mb-4 flex items-center">
+                                    <i class="fas fa-euro-sign mr-2"></i>
+                                    Tarification et Disponibilité
+                                </h3>
+
+                                <div class="space-y-6">
+                                    <!-- Prix -->
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Prix par nuit*</label>
+                                        <div class="relative">
+                                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                <span class="text-gray-500">DH</span>
+                                            </div>
+                                            <input type="number"
+                                                name="prix"
+                                                id="prix"
+                                                required
+                                                min="1"
+                                                step="0.01"
+                                                class="w-full border border-gray-300 rounded-md pl-7 pr-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#862633]"
+                                                placeholder="Ex: 85">
+                                        </div>
+                                        <p class="mt-1 text-sm text-gray-500">
+                                            <i class="fas fa-info-circle mr-1"></i>
+                                            Prix minimum recommandé: 100DH/nuit
+                                        </p>
+                                    </div>
+
+                                    <!-- Période de disponibilité -->
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-3">Période de disponibilité*</label>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div>
+                                                <div class="flex items-center space-x-2">
+                                                    <i class="fas fa-calendar-alt text-[#862633]"></i>
+                                                    <span class="text-sm text-gray-700">Date de début</span>
+                                                </div>
+                                                <input type="date"
+                                                    name="disponible_du"
+                                                    id="disponible_du"
+                                                    required
+                                                    min="2030-06-01"
+                                                    max="2030-08-31"
+                                                    class="mt-1 w-full border border-gray-300 rounded-md px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#862633]">
+                                            </div>
+                                            <div>
+                                                <div class="flex items-center space-x-2">
+                                                    <i class="fas fa-calendar-check text-[#862633]"></i>
+                                                    <span class="text-sm text-gray-700">Date de fin</span>
+                                                </div>
+                                                <input type="date"
+                                                    name="disponible_au"
+                                                    id="disponible_au"
+                                                    required
+                                                    min="2030-06-01"
+                                                    max="2030-08-31"
+                                                    class="mt-1 w-full border border-gray-300 rounded-md px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#862633]">
+                                            </div>
+                                        </div>
+                                        <p class="mt-2 text-sm text-gray-500">
+                                            <i class="fas fa-info-circle mr-1"></i>
+                                            La période doit être comprise entre le 1er juin et le 31 août 2030
+                                        </p>
+                                    </div>
+
+                                    <!-- Options supplémentaires -->
+                                    <div class="space-y-3">
+                                        <label class="block text-sm font-medium text-gray-700">Options de réservation</label>
+                                        <div class="flex items-center p-3 bg-white rounded-lg border border-gray-200">
+                                            <input type="checkbox"
+                                                name="reservation_instantanee"
+                                                id="reservation_instantanee"
+                                                class="h-4 w-4 text-[#862633] rounded border-gray-300 focus:ring-[#862633]">
+                                            <label for="reservation_instantanee" class="ml-2 text-sm text-gray-700">
+                                                <i class="fas fa-bolt mr-2 text-[#862633]"></i>
+                                                Autoriser la réservation instantanée
+                                            </label>
+                                        </div>
+                                        <div class="flex items-center p-3 bg-white rounded-lg border border-gray-200">
+                                            <input type="checkbox"
+                                                name="annulation_flexible"
+                                                id="annulation_flexible"
+                                                class="h-4 w-4 text-[#862633] rounded border-gray-300 focus:ring-[#862633]">
+                                            <label for="annulation_flexible" class="ml-2 text-sm text-gray-700">
+                                                <i class="fas fa-undo mr-2 text-[#862633]"></i>
+                                                Politique d'annulation flexible
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Information sur la période -->
+                                <div class="mt-6 bg-[#862633] bg-opacity-10 rounded-lg p-4">
+                                    <div class="flex items-start">
+                                        <i class="fas fa-calendar-alt text-[#862633] mt-1 mr-3"></i>
+                                        <div>
+                                            <h4 class="font-medium text-[#862633]">Période Coupe du Monde 2030</h4>
+                                            <p class="text-sm text-gray-600">
+                                                Votre hébergement doit être disponible pendant la période du tournoi
+                                                (1er juin - 31 août 2030). Les dates en dehors de cette période ne seront pas prises en compte.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Équipements -->
+                            <!-- Section Équipements avec le nouveau style -->
+                            <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                                <h3 class="text-lg font-bold text-[#862633] mb-4 flex items-center">
+                                    <i class="fas fa-concierge-bell mr-2"></i>
+                                    Équipements disponibles
+                                </h3>
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <!-- Wifi -->
+                                    <div class="flex items-center p-3 bg-white rounded-lg border border-gray-200">
+                                        <input type="checkbox"
+                                            name="equipements[]"
+                                            id="wifi"
+                                            value="Wifi"
+                                            class="h-4 w-4 text-[#862633] rounded border-gray-300 focus:ring-[#862633]">
+                                        <label for="wifi" class="ml-2 text-sm text-gray-700">
+                                            <i class="fas fa-wifi mr-2 text-[#862633]"></i>Wifi
+                                        </label>
+                                    </div>
+
+                                    <!-- Climatisation -->
+                                    <div class="flex items-center p-3 bg-white rounded-lg border border-gray-200">
+                                        <input type="checkbox"
+                                            name="equipements[]"
+                                            id="climatisation"
+                                            value="Climatisation"
+                                            class="h-4 w-4 text-[#862633] rounded border-gray-300 focus:ring-[#862633]">
+                                        <label for="climatisation" class="ml-2 text-sm text-gray-700">
+                                            <i class="fas fa-snowflake mr-2 text-[#862633]"></i>Climatisation
+                                        </label>
+                                    </div>
+
+                                    <!-- Cuisine -->
+                                    <div class="flex items-center p-3 bg-white rounded-lg border border-gray-200">
+                                        <input type="checkbox"
+                                            name="equipements[]"
+                                            id="cuisine"
+                                            value="Cuisine"
+                                            class="h-4 w-4 text-[#862633] rounded border-gray-300 focus:ring-[#862633]">
+                                        <label for="cuisine" class="ml-2 text-sm text-gray-700">
+                                            <i class="fas fa-utensils mr-2 text-[#862633]"></i>Cuisine
+                                        </label>
+                                    </div>
+
+                                    <!-- TV -->
+                                    <div class="flex items-center p-3 bg-white rounded-lg border border-gray-200">
+                                        <input type="checkbox"
+                                            name="equipements[]"
+                                            id="tv"
+                                            value="TV"
+                                            class="h-4 w-4 text-[#862633] rounded border-gray-300 focus:ring-[#862633]">
+                                        <label for="tv" class="ml-2 text-sm text-gray-700">
+                                            <i class="fas fa-tv mr-2 text-[#862633]"></i>TV
+                                        </label>
+                                    </div>
+
+                                    <!-- Parking -->
+                                    <div class="flex items-center p-3 bg-white rounded-lg border border-gray-200">
+                                        <input type="checkbox"
+                                            name="equipements[]"
+                                            id="parking"
+                                            value="Parking"
+                                            class="h-4 w-4 text-[#862633] rounded border-gray-300 focus:ring-[#862633]">
+                                        <label for="parking" class="ml-2 text-sm text-gray-700">
+                                            <i class="fas fa-parking mr-2 text-[#862633]"></i>Parking
+                                        </label>
+                                    </div>
+
+                                    <!-- Piscine -->
+                                    <div class="flex items-center p-3 bg-white rounded-lg border border-gray-200">
+                                        <input type="checkbox"
+                                            name="equipements[]"
+                                            id="piscine"
+                                            value="Piscine"
+                                            class="h-4 w-4 text-[#862633] rounded border-gray-300 focus:ring-[#862633]">
+                                        <label for="piscine" class="ml-2 text-sm text-gray-700">
+                                            <i class="fas fa-swimming-pool mr-2 text-[#862633]"></i>Piscine
+                                        </label>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-4">
+                                    <i class="fas fa-info-circle mr-1"></i>
+                                    Sélectionnez les équipements disponibles dans votre hébergement
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!-- Boutons d'action -->
+                    <div class="mt-8 flex justify-end space-x-4">
+                        <button type="button" onclick="closeAnnonceModal()"
+                            class="px-6 py-3 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 font-medium transition duration-300">
+                            Annuler
+                        </button>
+                        <button type="submit"
+                            class="worldcup-gradient hover:bg-[#6E1F2A] text-white px-8 py-3 rounded-md font-bold shadow-md transition duration-300">
+                            <i class="fas fa-plus mr-2"></i>
+                            Publier l'hébergement
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Scripts remain the same -->
     <script>
-        // Existing JavaScript code remains unchanged
+        // Simple script to toggle favorites (for demonstration)
+        document.querySelectorAll('.fa-heart').forEach(heart => {
+            heart.addEventListener('click', function() {
+                this.classList.toggle('far');
+                this.classList.toggle('fas');
+                this.classList.toggle('text-red-500');
+            });
+        });
+
+        // Fonctions pour la modal d'ajout d'annonce
+        function openAnnonceModal() {
+            document.getElementById('annonceModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Empêche le défilement du body
+        }
+
+        function closeAnnonceModal() {
+            document.getElementById('annonceModal').classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Réactive le défilement du body
+        }
+
+        // Validation de l'URL de l'image
+        document.getElementById('image_url').addEventListener('blur', function() {
+            validateImageUrl(this);
+        });
+
+        function validateImageUrl(input) {
+            const url = input.value;
+            if (url && !isValidImageUrl(url)) {
+                input.setCustomValidity('Veuillez entrer une URL d\'image valide (jpg, jpeg, png)');
+            } else {
+                input.setCustomValidity('');
+            }
+        }
+
+        function isValidImageUrl(url) {
+            try {
+                const parsedUrl = new URL(url);
+                return /\.(jpg|jpeg|png)$/i.test(parsedUrl.pathname);
+            } catch {
+                return false;
+            }
+        }
+
+        // Script pour vérifier que la date de fin est après la date de début
+        document.getElementById('disponible_au').addEventListener('change', function() {
+            var dateDebut = document.getElementById('disponible_du').value;
+            var dateFin = this.value;
+
+            if (dateDebut && dateFin && new Date(dateFin) <= new Date(dateDebut)) {
+                alert('La date de fin doit être postérieure à la date de début.');
+                this.value = '';
+            }
+        });
+
+        // Validation des dates
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateDebut = document.getElementById('disponible_du');
+            const dateFin = document.getElementById('disponible_au');
+
+            // Définir les dates minimales et maximales
+            const minDate = '2030-06-01';
+            const maxDate = '2030-08-31';
+
+            dateDebut.addEventListener('change', function() {
+                if (dateFin.value && this.value > dateFin.value) {
+                    alert('La date de début doit être antérieure à la date de fin');
+                    this.value = '';
+                }
+            });
+
+            dateFin.addEventListener('change', function() {
+                if (dateDebut.value && this.value < dateDebut.value) {
+                    alert('La date de fin doit être postérieure à la date de début');
+                    this.value = '';
+                }
+            });
+        });
     </script>
 </body>
 
