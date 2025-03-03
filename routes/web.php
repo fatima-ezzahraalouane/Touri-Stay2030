@@ -56,7 +56,7 @@ Route::middleware(['auth', 'verified', 'role:touriste'])->group(function () {
 Route::middleware(['auth', 'role:proprietaire'])->prefix('proprietaire')->group(function () {
     Route::get('/dashboard', [ProprietaireController::class, 'dashboard'])->name('proprietaire.dashboard');
     
-    // Route::resource('annonces', ProprietaireController::class);
+    Route::resource('annonces', ProprietaireController::class);
  
 });
 
