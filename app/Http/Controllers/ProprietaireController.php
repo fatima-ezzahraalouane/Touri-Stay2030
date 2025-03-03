@@ -37,7 +37,7 @@ class ProprietaireController extends Controller
             'equipements' => 'nullable|array',
             'disponible_du' => 'required|date',
             'disponible_au' => 'required|date|after:disponible_du',
-            'images' => 'required|url|max:255',
+            'images' => 'required|url|mimes:jpeg,png,jpg|max:255',
         ]);
 
         //conversion des equipements en chaine json
@@ -88,5 +88,44 @@ class ProprietaireController extends Controller
         }
 
         return view('annonces.edit', compact('annonce'));
+    }
+
+    //modifier annonce dans database
+    public function update(Request $request, Annonce $annonce)
+    {
+        // verifier que l'utilisateur est le propriétaire de l'annonce
+        if ($annonce->user_id !== Auth::id()) {
+            abort(403, 'Vous n\'êtes pas autorisé à modifier cette annonce.');
+        }
+
+        //validation des donnees
+        $validated = $request->validate([
+            'titre' => 'required|string|max:255',
+            'description' => 'required|string',
+            'pays' => 'required|string|max:255',
+            'ville' => 'required|string|max:255',
+            'prix' => 'required|numeric|min:0',
+            'equipements' => 'nullable|array',
+            'disponible_du' => 'required|date',
+            'disponible_au' => 'required|date|after:disponible_du',
+            'images' => 'required|url|mimes:jpeg,png,jpg|max:255',
+        ]);
+
+        // Conversion des équipements en chaîne JSON
+        $equipements = $request->has('equipements') ? json_encode($request->equipements) : json_encode([]);
+
+        // mise à jour de l'annonce
+        $annonce->titre = $validated['titre'];
+        $annonce->description = $validated['description'];
+        $annonce->pays = $validated['pays'];
+        $annonce->ville = $validated['ville'];
+        $annonce->prix = $validated['prix'];
+        $annonce->equipements = $equipements;
+        $annonce->disponible_du = $validated['disponible_du'];
+        $annonce->disponible_au = $validated['disponible_au'];
+        $annonce->images = $validated['images'];
+        $annonce->save();
+
+        return redirect()->route('proprietaire.dashboard')->with('success', 'Votre annonce a été mise à jour avec succès!');
     }
 }
