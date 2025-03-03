@@ -244,7 +244,6 @@
         </footer>
     </div>
 
-    <!-- Modal remains the same but with updated styling -->
     <!-- Modal Ajouter une annonce -->
     <div id="annonceModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden overflow-y-auto">
         <div class="bg-white rounded-lg shadow-xl max-w-5xl w-full max-h-screen overflow-y-auto">
@@ -343,10 +342,10 @@
 
                                 <!-- Image URL -->
                                 <div>
-                                    <label for="image_url" class="block text-sm font-medium text-gray-700 mb-2">URL de l'image*</label>
+                                    <label for="images" class="block text-sm font-medium text-gray-700 mb-2">URL de l'image*</label>
                                     <input type="url"
-                                        name="image_url"
-                                        id="image_url"
+                                        name="images"
+                                        id="images"
                                         required
                                         class="w-full border border-gray-300 rounded-md px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#862633]"
                                         placeholder="https://exemple.com/image.jpg">
@@ -597,7 +596,7 @@
         }
 
         // Validation de l'URL de l'image
-        document.getElementById('image_url').addEventListener('blur', function() {
+        document.getElementById('images').addEventListener('blur', function() {
             validateImageUrl(this);
         });
 
