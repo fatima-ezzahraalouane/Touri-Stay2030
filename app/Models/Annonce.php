@@ -35,4 +35,9 @@ class Annonce extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getEquipementsArrayAttribute()
+    {
+        return json_decode($this->equipements) ?: [];
+    }
 }
