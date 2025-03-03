@@ -213,19 +213,49 @@
 
             <!-- pagination -->
             <div class="mt-6 flex justify-between items-center">
-                <div class="text-gray-600">Affichant 1 à 4 sur 4 annonces</div>
-                <nav class="inline-flex rounded-md shadow-sm">
-                    <a href="#" class="py-2 px-4 bg-white border border-gray-300 text-sm font-medium rounded-l-md text-gray-700 hover:bg-gray-50">
-                        Précédent
+    <div class="text-gray-600">
+        Affichant {{ $annonces->firstItem() ?? 0 }} à {{ $annonces->lastItem() ?? 0 }} sur {{ $annonces->total() }} annonces
+    </div>
+    
+    @if ($annonces->hasPages())
+        <nav class="inline-flex rounded-md shadow-sm">
+            {{-- Previous Page Link --}}
+            @if ($annonces->onFirstPage())
+                <span class="py-2 px-4 bg-gray-100 border border-gray-300 text-sm font-medium rounded-l-md text-gray-400 cursor-not-allowed">
+                    Précédent
+                </span>
+            @else
+                <a href="{{ $annonces->previousPageUrl() }}" class="py-2 px-4 bg-white border border-gray-300 text-sm font-medium rounded-l-md text-gray-700 hover:bg-gray-50">
+                    Précédent
+                </a>
+            @endif
+            
+            {{-- Pagination Elements --}}
+            @foreach ($annonces->getUrlRange(1, $annonces->lastPage()) as $page => $url)
+                @if ($page == $annonces->currentPage())
+                    <span class="py-2 px-4 bg-[#862633] border border-[#862633] text-sm font-medium text-black">
+                        {{ $page }}
+                    </span>
+                @else
+                    <a href="{{ $url }}" class="py-2 px-4 bg-white border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                        {{ $page }}
                     </a>
-                    <a href="#" class="py-2 px-4 bg-blue-600 border border-blue-600 text-sm font-medium text-white">
-                        1
-                    </a>
-                    <a href="#" class="py-2 px-4 bg-white border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 hover:bg-gray-50">
-                        Suivant
-                    </a>
-                </nav>
-            </div>
+                @endif
+            @endforeach
+            
+            {{-- Next Page Link --}}
+            @if ($annonces->hasMorePages())
+                <a href="{{ $annonces->nextPageUrl() }}" class="py-2 px-4 bg-white border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 hover:bg-gray-50">
+                    Suivant
+                </a>
+            @else
+                <span class="py-2 px-4 bg-gray-100 border border-gray-300 text-sm font-medium rounded-r-md text-gray-400 cursor-not-allowed">
+                    Suivant
+                </span>
+            @endif
+        </nav>
+    @endif
+</div>
         </div>
 
         <!-- Footer avec nouvelles couleurs -->
