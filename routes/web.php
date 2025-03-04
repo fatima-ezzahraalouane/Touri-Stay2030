@@ -27,28 +27,28 @@ Route::middleware(['auth', 'verified', 'role:touriste'])->group(function () {
     Route::get('/touriste/dashboard', [TouristeController::class, 'dashboard'])->name('touriste.dashboard');
 
  // Page des favoris
-//  Route::get('/touriste/favorites', function () {
-//     return view('touriste.favorites');
-// })->name('touriste.favorites');
+ Route::get('/touriste/favorites', function () {
+    return view('touriste.favorites');
+})->name('touriste.favorites');
 
 
 
 // Routes pour mettre à jour le profil
-// Route::put('/touriste/profile/update', [ProfileController::class, 'update'])->name('touriste.profile.update');
+Route::put('/touriste/profile/update', [ProfileController::class, 'update'])->name('touriste.profile.update');
 
-// Route::get('/search', [TouristeController::class, 'search'])->name('touriste.search');
-// Route::get('/annonces/{id}', [TouristeController::class, 'showAnnonce'])->name('touriste.annonce.show');
-// Route::get('/favorites', [TouristeController::class, 'favorites'])->name('touriste.favorites');
-// Route::post('/toggle-favorite', [TouristeController::class, 'toggleFavorite'])->name('touriste.toggle-favorite');
+Route::get('/search', [TouristeController::class, 'search'])->name('touriste.search');
+Route::get('/annonces/{id}', [TouristeController::class, 'showAnnonce'])->name('touriste.annonce.show');
+Route::get('/favorites', [TouristeController::class, 'favorites'])->name('touriste.favorites');
+Route::post('/toggle-favorite', [TouristeController::class, 'toggleFavorite'])->name('touriste.toggle-favorite');
 
 
 });
 
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 
  //  propriétaires routes
