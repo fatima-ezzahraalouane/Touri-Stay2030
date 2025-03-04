@@ -201,14 +201,14 @@
                             <div class="bg-gray-50 p-4 rounded-lg">
                                 <h4 class="text-sm font-medium text-[#862633] mb-1">Rôle</h4>
                                 <p class="text-gray-800">
-                                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-[#009A44] text-white">
+                                    <span class="px-2 py-1 rounded-full bg-[#009A44]">
                                         {{ ucfirst($user->role) }}
                                     </span>
                                 </p>
                             </div>
                             <div class="bg-gray-50 p-4 rounded-lg">
-                                <h4 class="text-sm font-medium text-[#862633] mb-1">Dernière mise à jour</h4>
-                                <p class="text-gray-800">2025-03-04 10:15:13</p>
+                                <h4 class="text-sm font-medium text-[#862633] mb-1">Date d'inscription</h4>
+                                <p class="text-gray-800">{{ $user->created_at->format('d/m/Y') }}</p>
                             </div>
                         </div>
                     </div>
@@ -255,10 +255,6 @@
                                         Le rôle ne peut être modifié que par un administrateur
                                     </p>
                                 </div>
-                                <div class="flex items-center">
-                                    <i class="fas fa-user text-[#862633] mr-2"></i>
-                                    <span class="text-sm text-gray-600">Connecté en tant que: fatima-ezzahraalouane</span>
-                                </div>
                             </div>
                             <div class="flex justify-end space-x-3">
                                 <button type="button"
@@ -268,7 +264,7 @@
                                     Annuler
                                 </button>
                                 <button type="submit"
-                                    class="bg-[#862633] hover:bg-[#6E1F2A] text-white px-4 py-2 rounded-md font-medium transition duration-300">
+                                    class="worldcup-gradient hover:bg-[#6E1F2A] text-white px-4 py-2 rounded-md font-medium transition duration-300">
                                     <i class="fas fa-save mr-1"></i>
                                     Enregistrer
                                 </button>
@@ -283,10 +279,6 @@
                             <i class="fas fa-bell mr-2"></i>
                             Paramètres de notifications
                         </h3>
-                        <div class="text-sm text-gray-600">
-                            <i class="far fa-clock mr-1"></i>
-                            Dernière mise à jour: 2025-03-04 10:17:40
-                        </div>
                     </div>
 
                     <form>
@@ -413,7 +405,7 @@
                         required>
                     <p class="text-xs text-gray-500 mt-2">
                         <i class="fas fa-info-circle mr-1"></i>
-                        Formats acceptés : JPG, PNG, GIF
+                        Formats acceptés : JPG, PNG, JPEJ
                     </p>
                 </div>
 
@@ -425,7 +417,7 @@
                         Annuler
                     </button>
                     <button type="submit"
-                        class="bg-[#862633] hover:bg-[#6E1F2A] text-white px-4 py-2 rounded-md font-medium transition duration-300">
+                        class="bg-gray hover:bg-[#6E1F2A] text-white px-4 py-2 rounded-md font-medium transition duration-300">
                         <i class="fas fa-save mr-1"></i>
                         Enregistrer
                     </button>
@@ -435,32 +427,17 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-[#862633] text-white mt-12 py-8">
+    <footer class="worldcup-gradient text-white mt-12 py-8">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Brand Section -->
                 <div>
                     <h3 class="text-xl font-bold mb-4 flex items-center">
-                        <span>WorldCup</span>
-                        <span class="text-[#009A44]">Hosts</span>
-                        <span class="ml-2">⚽ 2030</span>
+                        <span>TouriStay 2030</span>
                     </h3>
                     <p class="text-gray-300">
                         Votre plateforme officielle d'hébergement pour la Coupe du Monde 2030.
                     </p>
-                    <!-- Current User Info -->
-                    <div class="mt-4 p-4 bg-white/10 rounded-lg">
-                        <div class="text-sm text-gray-300">
-                            <div class="flex items-center mb-2">
-                                <i class="far fa-user-circle mr-2"></i>
-                                <span>fatima-ezzahraalouane</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="far fa-clock mr-2"></i>
-                                <span>2025-03-04 10:19:34</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Quick Links -->
@@ -500,7 +477,7 @@
                     <div class="space-y-3">
                         <div class="flex items-center text-gray-300">
                             <i class="fas fa-envelope mr-3 text-[#009A44]"></i>
-                            <span>contact@worldcuphosts2030.com</span>
+                            <span>contact@touristay2030.com</span>
                         </div>
                         <div class="flex items-center text-gray-300">
                             <i class="fas fa-phone mr-3 text-[#009A44]"></i>
@@ -517,7 +494,7 @@
             <!-- Copyright -->
             <div class="border-t border-white/20 mt-8 pt-6 text-center">
                 <p class="text-gray-300">
-                    &copy; 2025 WorldCup Hosts 2030. Tous droits réservés.
+                    &copy; TouriStay 2030. Tous droits réservés.
                 </p>
             </div>
         </div>
@@ -535,43 +512,28 @@
             document.getElementById('infoViewMode').classList.remove('hidden');
         });
 
-        // Update DateTime
-        function updateDateTime() {
-            const now = new Date();
-            const formatted = now.toISOString().slice(0, 19).replace('T', ' ');
-            document.querySelectorAll('.far.fa-clock').forEach(clock => {
-                const span = clock.parentElement.querySelector('span');
-                if (span) span.textContent = formatted;
-            });
-        }
+        // Smooth scrolling for in-page links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            setInterval(updateDateTime, 1000);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
 
-            // Smooth scrolling for in-page links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
+                    // Update active state in menu
+                    document.querySelectorAll('a[href^="#"]').forEach(link => {
+                        link.classList.remove('bg-[#862633]', 'text-white');
+                        link.classList.add('text-gray-700', 'hover:bg-[#862633]', 'hover:text-white');
+                    });
 
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 100,
-                            behavior: 'smooth'
-                        });
-
-                        // Update active state in menu
-                        document.querySelectorAll('a[href^="#"]').forEach(link => {
-                            link.classList.remove('bg-[#862633]', 'text-white');
-                            link.classList.add('text-gray-700', 'hover:bg-[#862633]', 'hover:text-white');
-                        });
-
-                        this.classList.remove('text-gray-700', 'hover:bg-[#862633]', 'hover:text-white');
-                        this.classList.add('bg-[#862633]', 'text-white');
-                    }
-                });
+                    this.classList.remove('text-gray-700', 'hover:bg-[#862633]', 'hover:text-white');
+                    this.classList.add('bg-[#862633]', 'text-white');
+                }
             });
         });
     </script>
