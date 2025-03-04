@@ -55,7 +55,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-[#862633] text-white mt-12 py-8">
+    <footer class="worldcup-gradient bg-[#862633] text-white mt-12 py-8">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
