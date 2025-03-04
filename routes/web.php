@@ -22,7 +22,6 @@ Route::get('/', function () {
 });
 
 
-
 // Dashboard pour les touristes
 Route::middleware(['auth', 'verified', 'role:touriste'])->group(function () {
     Route::get('/touriste/dashboard', [TouristeController::class, 'dashboard'])->name('touriste.dashboard');
@@ -57,12 +56,11 @@ Route::middleware(['auth', 'role:proprietaire'])->prefix('proprietaire')->group(
     Route::get('/dashboard', [ProprietaireController::class, 'dashboard'])->name('proprietaire.dashboard');
     
     Route::resource('annonces', ProprietaireController::class);
- 
 });
 
-// Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile.userprofile');
-// Route::post('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.userprofile.update');
-// Route::post('/profile/photo', [ProfileController::class, 'updateProfilePhoto'])->name('profile.userprofile.photo');
+Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile.userprofile');
+Route::post('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.userprofile.update');
+Route::post('/profile/photo', [ProfileController::class, 'updateProfilePhoto'])->name('profile.userprofile.photo');
 
 // administrateurs routes
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
