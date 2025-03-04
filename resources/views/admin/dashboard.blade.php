@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WorldCup Hosts 2030 - Administration</title>
+    <title>TouriStay 2030 - Administration</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
@@ -70,7 +70,7 @@
             <header class="bg-white shadow-sm z-10">
                 <div class="flex items-center justify-between p-4">
                     <div class="flex items-center">
-                        <span class="text-[#862633] text-lg font-semibold">Administration WorldCup 2030</span>
+                        <span class="text-[#862633] text-lg font-semibold">Administration TouriStay 2030</span>
                     </div>
                     <div class="flex items-center space-x-6">
 
@@ -91,7 +91,7 @@
                                     <i class="fas fa-user"></i>
                                 </div>
                                 @endif
-                                <i class="fas fa-chevron-down text-xs text-[#009A44]"></i>
+                                <!-- <i class="fas fa-chevron-down text-xs text-[#009A44]"></i> -->
                             </button>
                         </div>
                     </div>
@@ -162,7 +162,7 @@
                 </div>
 
                 <!-- Charts Section -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                <!-- <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
                     <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-[#862633]">
                         <div class="flex justify-between items-center mb-4">
                             <h2 class="text-[#862633] text-lg font-semibold flex items-center">
@@ -186,7 +186,7 @@
                             <img src="/api/placeholder/600/250" alt="Graphique de répartition" class="w-full h-full object-cover rounded">
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Recent Listings -->
                 <div class="bg-white rounded-lg shadow-md mb-8 border-t-4 border-[#862633]">
@@ -207,7 +207,8 @@
                                 <tr class="bg-gray-50">
                                     <th class="px-6 py-3 text-left text-xs font-medium text-[#862633] uppercase tracking-wider">ID</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-[#862633] uppercase tracking-wider">Titre</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-[#862633] uppercase tracking-wider">Ville Hôte</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-[#862633] uppercase tracking-wider">Pays</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-[#862633] uppercase tracking-wider">Ville</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-[#862633] uppercase tracking-wider">Propriétaire</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-[#862633] uppercase tracking-wider">Prix/Nuit</th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-[#862633] uppercase tracking-wider">Actions</th>
@@ -218,6 +219,12 @@
                                 <tr class="hover:bg-gray-50 transition-colors duration-200">
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-[#862633] font-medium">#{{ $annonce->id }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $annonce->titre }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                        <span class="flex items-center">
+                                            <i class="fas fa-map-marker-alt text-[#009A44] mr-2"></i>
+                                            {{ $annonce->pays }}
+                                        </span>
+                                    </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                         <span class="flex items-center">
                                             <i class="fas fa-map-marker-alt text-[#009A44] mr-2"></i>
