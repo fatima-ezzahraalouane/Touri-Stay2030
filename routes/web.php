@@ -66,8 +66,8 @@ Route::post('/profile/photo', [ProfileController::class, 'updateProfilePhoto'])-
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])
             ->name('admin.dashboard');
-    // Route::delete('/annonces/{id}', [AdminController::class, 'deleteAnnonce'])
-    //         ->name('admin.annonces.delete');
+    Route::delete('/annonces/{id}', [AdminController::class, 'deleteAnnonce'])
+            ->name('admin.annonces.delete');
     });
 
 
