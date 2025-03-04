@@ -70,7 +70,7 @@ class TouristeController extends Controller
         
         //populair ville 
         $popularCities = [
-            ['name' => 'Casablanca', 'country' => 'Maroc', 'image' => 'https://s3.hosteur.io/gazette-prod-public/gazetteWeb/662f4295514c09a4288b5117/articles/67c5d891fe6ef18fdffb6efc/files/1168612/a-mosque-assan-2-asablanca.webp'],
+            ['name' => 'Casablanca', 'country' => 'Maroc', 'image' => 'https://pohcdn.com/guide/sites/default/files/styles/paragraph__live_banner__lb_image__1880bp/public/live_banner/Casablanca-1_0.jpg'],
             ['name' => 'Madrid', 'country' => 'Espagne', 'image' => 'https://a.travel-assets.com/findyours-php/viewfinder/images/res70/348000/348698-Madrid.jpg'],
             ['name' => 'Lisbonne', 'country' => 'Portugal', 'image' => 'https://lisboacard.fr/wp-content/uploads/2022/08/lisboa-card.jpg'],
         ];
