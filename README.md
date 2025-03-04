@@ -47,66 +47,11 @@ TouriStay 2030 est une **plateforme innovante** qui facilite la location de mais
 ## 📌 Diagrammes UML
 
 Le projet inclut **deux diagrammes UML** pour une meilleure compréhension de l’architecture :
+
 1️⃣ **Diagramme de cas d’utilisation** – Représentation des interactions utilisateur.  
 2️⃣ **Diagramme de classes** – Modélisation des entités et relations du projet.  
 
 ---
-
-## 🛠️ Installation et Exécution du Projet
-
-### 📋 Prérequis
-🔹 PHP 8+  
-🔹 Composer  
-🔹 PostgreSQL  
-🔹 Node.js & NPM  
-🔹 Laravel 10+  
-
-### ⚙️ Étapes d’installation
-
-1️⃣ **Cloner le projet** :
-   ```bash
-   git clone https://github.com/votre-repo/touristay-2030.git
-   cd touristay-2030
-   ```
-2️⃣ **Installer les dépendances Laravel** :
-   ```bash
-   composer install
-   ```
-3️⃣ **Configurer la base de données** :
-   ```bash
-   cp .env.example .env
-   ```
-4️⃣ **Générer la clé d’application** :
-   ```bash
-   php artisan key:generate
-   ```
-5️⃣ **Exécuter les migrations et les seeders** :
-   ```bash
-   php artisan migrate --seed
-   ```
-6️⃣ **Lancer le serveur local** :
-   ```bash
-   php artisan serve
-   ```
-7️⃣ **Compiler les assets front-end** :
-   ```bash
-   npm install && npm run dev
-   ```
-
----
-
-## 🤝 Contribution
-Les contributions sont **les bienvenues** ! Pour contribuer :
-1️⃣ **Forker le projet**  
-2️⃣ **Créer une branche** : `git checkout -b feature-nouvelle-fonctionnalite`  
-3️⃣ **Committer vos modifications** : `git commit -m "Ajout de la nouvelle fonctionnalité"`  
-4️⃣ **Pousser votre branche** : `git push origin feature-nouvelle-fonctionnalite`  
-5️⃣ **Ouvrir une pull request** 🛠️  
-
----
-
-## 📜 Licence
-📝 Ce projet est sous licence **MIT**. Consultez le fichier `LICENSE` pour plus de détails.
 
 🚀 **TouriStay 2030 – La plateforme idéale pour un séjour inoubliable au Mondial 2030 !** 🌍✨
 
