@@ -394,12 +394,12 @@
             <form action="{{ route('profile.userprofile.photo') }}" method="POST">
                 @csrf
                 <div class="mb-4">
-                    <label class="block text-sm font-medium text-[#862633] mb-2" for="photo_url">
-                        URL de la photo
+                    <label class="block text-sm font-medium text-[#862633] mb-2" for="avatar">
+                        URL de la photo de profil
                     </label>
                     <input type="url"
-                        name="photo_url"
-                        id="photo_url"
+                        name="avatar"
+                        id="avatar"
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#862633]"
                         placeholder="https://exemple.com/votre-image.jpg"
                         required>
@@ -417,7 +417,7 @@
                         Annuler
                     </button>
                     <button type="submit"
-                        class="bg-gray hover:bg-[#6E1F2A] text-white px-4 py-2 rounded-md font-medium transition duration-300">
+                        class="worldcup-gradient hover:bg-[#6E1F2A] text-white px-4 py-2 rounded-md font-medium transition duration-300">
                         <i class="fas fa-save mr-1"></i>
                         Enregistrer
                     </button>
