@@ -43,13 +43,13 @@
                                     </a>
                                 @else
                                     <a href="{{ route('login') }}" 
-                                       class="worldcup-gradient text-white rounded-xl p-2">
+                                       class="worldcup-gradient text-white font-semibold rounded-xl p-2">
                                         Connexion
                                     </a>
 
                                     @if (Route::has('register'))
                                         <a href="{{ route('register') }}" 
-                                           class="worldcup-gradient text-white rounded-xl p-2">
+                                           class="worldcup-gradient text-white font-semibold rounded-xl p-2">
                                             Inscription
                                         </a>
                                     @endif
