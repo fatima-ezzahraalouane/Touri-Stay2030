@@ -36,6 +36,11 @@ class Annonce extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function favoris()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
     public function getEquipementsArrayAttribute()
     {
         return json_decode($this->equipements) ?: [];
