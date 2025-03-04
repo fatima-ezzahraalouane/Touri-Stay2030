@@ -5,7 +5,7 @@
             <div class="col-span-1 md:col-span-1">
                 <div class="flex items-center">
                     <span class="text-2xl font-bold tracking-tighter">
-                        <span class="font-playfair">Touri</span><span class="text-[#009A44] font-playfair">Stay</span>
+                        <span class="font-playfair">Touri</span><span class="text-[#009A44] font-playfair">Stay </span>
                         <span class="text-lg font-light align-top tracking-wide ml-1 text-[#862633]">2030</span>
                     </span>
                 </div>
