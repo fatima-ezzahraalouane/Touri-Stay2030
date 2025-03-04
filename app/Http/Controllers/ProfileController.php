@@ -53,33 +53,47 @@ class ProfileController extends Controller
         ]);
 
         $user = Auth::user();
-       $user->name = $request->name;
-       $user->email = $request->email;
-       $user->save();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
 
-       return redirect()->route('profile.userprofile')
-       ->with('success', 'Vos informations personnelles ont été mises à jour avec succès.');
-
+        return redirect()->route('profile.userprofile')
+            ->with('success', 'Vos informations personnelles ont été mises à jour avec succès.');
     }
 
+    // mise a jour avatar
+    public function updateProfilePhoto(Request $request)
+    {
+        $request->validate([
+            'avatar' => 'required|url|max:255',
+        ]);
+
+        $user = Auth::user();
+
+        $user->avatar = $request->avatar;
+        $user->save();
+
+        return redirect()->route('profile.userprofile')
+        ->with('success', 'Votre photo de profil a été mise à jour avec succès.');
+    }
     /**
      * Delete the user's account.
      */
-    public function destroy(Request $request): RedirectResponse
-    {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
+    // public function destroy(Request $request): RedirectResponse
+    // {
+    //     $request->validateWithBag('userDeletion', [
+    //         'password' => ['required', 'current_password'],
+    //     ]);
 
-        $user = $request->user();
+    //     $user = $request->user();
 
-        Auth::logout();
+    //     Auth::logout();
 
-        $user->delete();
+    //     $user->delete();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+    //     $request->session()->invalidate();
+    //     $request->session()->regenerateToken();
 
-        return Redirect::to('/');
-    }
+    //     return Redirect::to('/');
+    // }
 }
