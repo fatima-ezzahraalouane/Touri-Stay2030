@@ -190,7 +190,7 @@
                                     <a href="{{ route('annonces.edit', $annonce->id) }}" class="text-blue-600 hover:text-blue-800">
                                         <i class="far fa-edit"></i>
                                     </a>
-                                    <a href="{{ route('annonces.show', $annonce->id) }}" class="text-yellow-600 hover:text-yellow-800">
+                                    <a href="#" class="text-yellow-600 hover:text-yellow-800">
                                         <i class="far fa-eye"></i>
                                     </a>
                                     <form action="{{ route('annonces.destroy', $annonce->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette annonce?');" class="inline">

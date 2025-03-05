@@ -110,7 +110,7 @@
                             <div class="flex justify-between items-center mt-4">
                                 <span class="text-xl font-bold text-[#009A44]">{{ $annonce->prix }} DH/nuit</span>
                                 <a href="{{ route('touriste.annonce.show', $annonce->id) }}" 
-                                   class="bg-[#862633] hover:bg-[#6E1F2A] text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">
+                                   class="worldcup-gradient hover:bg-[#6E1F2A] text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">
                                     <i class="fas fa-info-circle mr-1"></i>
                                     Voir détails
                                 </a>

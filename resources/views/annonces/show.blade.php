@@ -69,7 +69,7 @@
     <div class="container mx-auto px-4 py-8">
         <!-- Back Button -->
         <div class="mb-6">
-            <a href="{{ route('proprietaire.dashboard') }}"
+            <a href="{{ route('touriste.dashboard') }}"
                 class="flex items-center text-[#862633] hover:text-[#6E1F2A] transition duration-300">
                 <i class="fas fa-arrow-left mr-2"></i>
                 <span class="font-medium">Retour au tableau de bord</span>
