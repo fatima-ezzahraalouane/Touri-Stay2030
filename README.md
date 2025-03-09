@@ -50,6 +50,7 @@ Le projet inclut **deux diagrammes UML** pour une meilleure compréhension de l�
 
 1️⃣ **Diagramme de cas d’utilisation** – Représentation des interactions utilisateur.  
 2️⃣ **Diagramme de classes** – Modélisation des entités et relations du projet.  
+3️⃣ Diagramme d’activité – Visualisation des processus métier et flux d’actions dans le système.
 
 ---
 
